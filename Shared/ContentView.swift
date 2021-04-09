@@ -15,18 +15,35 @@ struct ContentView: View {
     
     @State var setState = false
     
+    @State var setAlive: Bool? = nil
+    
     var body: some View {
         
-        let dragGesture = DragGesture()
+        let dragGesture = DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged { value in
                 let xPos = value.location.x - 16.5
                 let yPos = value.location.y - 17.5
-                //print("\(value.location.x - 16.5),\(value.location.y - 17.5)")
                 if xPos > 0 && xPos < 900 && yPos > 0 && yPos < 900 {
-                    colony.cellSet.insert(Coordinate(Int(Double(xPos)/15),Int(Double(yPos)/15)))
+                    if setAlive == nil {
+                        if colony.isCellAlive(Int(Double(xPos)/15), Int(Double(yPos)/15)) {
+                            setAlive = false
+                            colony.setCellDead(Int(Double(xPos)/15), Int(Double(yPos)/15))
+                        } else {
+                            setAlive = true
+                            colony.setCellAlive(Int(Double(xPos)/15), Int(Double(yPos)/15))
+                        }
+                    } else {
+                        if setAlive! {
+                            colony.setCellAlive(Int(Double(xPos)/15), Int(Double(yPos)/15))
+                        } else {
+                            colony.setCellDead(Int(Double(xPos)/15), Int(Double(yPos)/15))
+                        }
+                    }
                 }
+            }.onEnded { _ in
+                setAlive = nil
             }
-        
+
         return HStack {
             GeometryReader { geometry in
                 Path { path in
