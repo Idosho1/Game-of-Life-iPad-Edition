@@ -13,6 +13,10 @@
 		3524CD452615279B007B05C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3524CD3026152794007B05C8 /* ContentView.swift */; };
 		3524CD462615279B007B05C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3524CD312615279B007B05C8 /* Assets.xcassets */; };
 		3524CD472615279B007B05C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3524CD312615279B007B05C8 /* Assets.xcassets */; };
+		3524CD5526193259007B05C8 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3524CD5426193259007B05C8 /* Coordinate.swift */; };
+		3524CD5626193259007B05C8 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3524CD5426193259007B05C8 /* Coordinate.swift */; };
+		3524CD5A26209620007B05C8 /* Colony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3524CD5926209620007B05C8 /* Colony.swift */; };
+		3524CD5B26209620007B05C8 /* Colony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3524CD5926209620007B05C8 /* Colony.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,8 @@
 		3524CD3E2615279B007B05C8 /* Game of Life iPad Edition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game of Life iPad Edition.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3524CD402615279B007B05C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3524CD412615279B007B05C8 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		3524CD5426193259007B05C8 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		3524CD5926209620007B05C8 /* Colony.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colony.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,8 @@
 			children = (
 				3524CD2F26152794007B05C8 /* Game_of_Life_iPad_EditionApp.swift */,
 				3524CD3026152794007B05C8 /* ContentView.swift */,
+				3524CD5926209620007B05C8 /* Colony.swift */,
+				3524CD5426193259007B05C8 /* Coordinate.swift */,
 				3524CD312615279B007B05C8 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -189,6 +197,8 @@
 			files = (
 				3524CD442615279B007B05C8 /* ContentView.swift in Sources */,
 				3524CD422615279B007B05C8 /* Game_of_Life_iPad_EditionApp.swift in Sources */,
+				3524CD5526193259007B05C8 /* Coordinate.swift in Sources */,
+				3524CD5A26209620007B05C8 /* Colony.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +208,8 @@
 			files = (
 				3524CD452615279B007B05C8 /* ContentView.swift in Sources */,
 				3524CD432615279B007B05C8 /* Game_of_Life_iPad_EditionApp.swift in Sources */,
+				3524CD5626193259007B05C8 /* Coordinate.swift in Sources */,
+				3524CD5B26209620007B05C8 /* Colony.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,7 +345,7 @@
 				PRODUCT_NAME = "Game of Life iPad Edition";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -355,7 +367,7 @@
 				PRODUCT_NAME = "Game of Life iPad Edition";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
