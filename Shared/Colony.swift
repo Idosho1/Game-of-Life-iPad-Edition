@@ -1,7 +1,9 @@
 import Foundation
 
-struct Colony: CustomStringConvertible
+struct Colony: CustomStringConvertible, Identifiable
 {
+  var id = UUID()
+    
   var size: Int
   var cellSet: Set<Coordinate>
 

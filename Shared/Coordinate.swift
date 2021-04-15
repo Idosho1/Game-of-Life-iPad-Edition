@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Coordinate: CustomStringConvertible, Hashable, Identifiable {
     var id : Int {

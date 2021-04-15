@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct Game_of_Life_iPad_EditionApp: App {
+    @StateObject private var colonyData = ColonyData(colonys: [Colony(size: 60)])
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(colonyData)
         }
     }
 }
