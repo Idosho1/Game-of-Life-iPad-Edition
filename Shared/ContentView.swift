@@ -23,13 +23,15 @@ struct ContentView: View {
     
     @State var play = false
     
+    @State var wrapping = false
+    
     var body: some View {
         
         let timer = Timer.publish(every: TimeInterval(1.0/timeMultiplier), on: .main, in: .common).autoconnect()
         
         let dragGesture = DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged { value in
-                let xPos = value.location.x - 16.5 - 50
+                let xPos = value.location.x - 16.5// - 50
                 let yPos = value.location.y - 17.5
                 if xPos > 0 && xPos < 900 && yPos > 0 && yPos < 900 {
                     if setAlive == nil {
@@ -78,15 +80,62 @@ struct ContentView: View {
                 }
                 
             }.frame(width: 900, height: 900)
-            .offset(x: 50)
+            //.offset(x: 50)
             .padding()
             .gesture(dragGesture)
             
             
+            VStack {
+                Text("Colony #\(colony.idNum)").font(.largeTitle)
+                Text("Generation #\(colony.generationNumber)").font(.title2)
+                .padding(.bottom,40)
+                
+                Picker(selection: $play, label: EmptyView()) {
+                    Image(systemName: "pause.fill").tag(false)
+                    Image(systemName: "play.fill").tag(true)
+                }
+                .pickerStyle(SegmentedPickerStyle()).padding(.horizontal,60).padding(.top).padding(.bottom,20)
+                
+                Slider(
+                    value: $timeMultiplier,
+                    in: 0...10,
+                    step: 0.5
+                ).padding(.horizontal,30)
+                
+                Text("Speed: \(String(format: "%.1f", timeMultiplier))").padding()
+                
+                Toggle("Wrapping", isOn: $wrapping).padding(.top,30).padding(.horizontal,140)
+                    .padding(.bottom,150)
+                
+                
+                            
+                Text("Templates").bold()
+                
+                List(templates) { template in
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            var id = colony.id
+                            colony = template.colony
+                            colony.id = id
+                        }) {
+                            Text(template.name)
+                        }
+                        Spacer()
+                    }
+                }.padding(.horizontal,140)//.padding(.bottom)
+                
+                Button(action: {colony.clear()}) {
+                    Text("Reset Colony")
+                }.padding()
+                
+                
+            }
             
+            /*
             VStack {
                 
-                VStack {
+                
                     Text("Colony Name").font(.largeTitle)
                     Text("Generation #\(colony.generationNumber)").font(.title2)
                     
@@ -97,12 +146,13 @@ struct ContentView: View {
                     .pickerStyle(SegmentedPickerStyle()).padding(.horizontal,60).padding(.top)
                     
                     
-                }.offset(x: -70).padding(.top,35)
+                //.offset(x: -70).padding(.top,35)
                 
                 
                 
                 
-                Spacer()
+                //Spacer()
+                HStack {
                 HStack {
                     Text("0x").fontWeight(.bold).rotationEffect(.degrees(90.0), anchor: .center)
                     Slider(
@@ -113,16 +163,34 @@ struct ContentView: View {
                     Text("10x").fontWeight(.bold).rotationEffect(.degrees(90.0), anchor: .center)
                 }
                 .rotationEffect(.degrees(-90.0), anchor: .topLeading)
-                .frame(width: 500)
+                //.frame(width: 500)
                 .offset(y: 250)
-                Spacer()
-            }.offset(x: 70)
+                
+                
+                VStack {
+                    List {
+                        Button(action: {}) {
+                            Text("1")
+                        }
+                        Button(action: {}) {
+                            Text("2")
+                        }
+                    }
+                    
+                    Button(action: {}) {
+                        Text("Reset Colony")
+                    }
+                }
+                
+                }
+                //Spacer()
+            }//.offset(x: 70)*/ 
             
             
             
         }.onReceive(timer) { _ in
             if play {
-                colony.evolve()
+                colony.evolve(wrapping: wrapping)
             }
         }
         .onDisappear {

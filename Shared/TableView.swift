@@ -16,14 +16,12 @@ struct TableView: View {
     var colonys: [Colony] {
         return colonyData.colonys
    }
-
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(colonyData.colonys) { colony in
-                    NavigationLink("Colony - Generation #\(colony.generationNumber)",destination:ContentView(colony:colony))
-
+                    NavigationLink("Colony #\(colony.idNum) - Generation #\(colony.generationNumber)",destination:ContentView(colony:colony))
                 }
                 .onDelete(perform: deleteItems)
                 .onMove(perform: moveItems)
@@ -31,7 +29,7 @@ struct TableView: View {
             .navigationBarTitle(Text("Colonys"))
             .navigationBarItems(trailing:Button("Add",action: addColony))
 
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
         
 
 }

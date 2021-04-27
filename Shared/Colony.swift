@@ -4,14 +4,19 @@ struct Colony: CustomStringConvertible, Identifiable
 {
   var id = UUID()
     
+  var idNum: Int
+  static var nextIdNum = 1
+    
   var size: Int
   var cellSet: Set<Coordinate>
 
   private (set) var generationNumber = 0
 
   init(size: Int = 10) {
-        self.size = size
+    self.size = size
     cellSet = Set<Coordinate>()
+    self.idNum = Colony.nextIdNum
+    Colony.nextIdNum += 1
   }
     
   var cellsArray: [(Int,Int)] {
@@ -30,6 +35,7 @@ struct Colony: CustomStringConvertible, Identifiable
 
   mutating func clear() {
     cellSet.removeAll()
+    generationNumber = 0
   }
 
   mutating func setCellAlive(_ row: Int, _ col: Int) {
