@@ -116,7 +116,7 @@ struct ContentView: View {
                         Spacer()
                         Button(action: {
                             var id = colony.id
-                            colony = template.colony
+                            colony.cellSet = template.cells
                             colony.id = id
                         }) {
                             Text(template.name)

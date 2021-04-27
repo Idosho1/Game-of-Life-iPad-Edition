@@ -12,13 +12,13 @@ struct Template: Identifiable {
     var id = UUID()
     
     var name: String
-    var colony: Colony
+    var cells: Set<Coordinate>
 }
 
-let blank = Colony(size: 60)
-let basic = Colony(size: 60)
-let glider = Colony(size: 60)
-let gun = Colony(size: 60)
+let blank: Set = Set<Coordinate>()
+let basic: Set = [Coordinate(5,5),Coordinate(5,6),Coordinate(5,7),Coordinate(6,6)]
+let glider: Set = Set<Coordinate>()
+let gun: Set = Set<Coordinate>()
 
-var templates = [Template(name: "Blank", colony: blank),Template(name: "Basic", colony: basic),Template(name: "Glider", colony: glider),Template(name: "Glider Gun", colony: gun)]
+var templates = [Template(name: "Blank", cells: blank),Template(name: "Basic", cells: basic),Template(name: "Glider", cells: glider),Template(name: "Glider Gun", cells: gun)]
 
