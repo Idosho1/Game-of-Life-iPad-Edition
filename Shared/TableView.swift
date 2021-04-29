@@ -29,9 +29,7 @@ struct TableView: View {
             .navigationBarTitle(Text("Colonys"))
             .navigationBarItems(trailing:Button("Add",action: addColony))
 
-        }.navigationViewStyle(StackNavigationViewStyle())
-        
-
+        }//.navigationViewStyle(StackNavigationViewStyle())
 }
     
 

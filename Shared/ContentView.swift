@@ -115,9 +115,7 @@ struct ContentView: View {
                     HStack {
                         Spacer()
                         Button(action: {
-                            var id = colony.id
                             colony.cellSet = template.cells
-                            colony.id = id
                         }) {
                             Text(template.name)
                         }
